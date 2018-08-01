@@ -1,14 +1,13 @@
 -module(lock_tests).
 -include_lib("eunit/include/eunit.hrl").
 
+start_and_stop_test() ->
+  {ok, _Pid} = lock_statem:start_link(),
+  lock_statem:stop().
+
 get_state_test() ->
   {ok, _Pid} = lock_statem:start_link(),
   ?assertEqual(locked, lock_statem:get_state()),
-  lock_statem:stop().
-
-handle_get_count_test() ->
-  {ok, _Pid} = lock_statem:start_link(),
-  ?assertEqual(0, lock_statem:get_count()),
   lock_statem:stop().
 
 handle_digit_press_test() ->
